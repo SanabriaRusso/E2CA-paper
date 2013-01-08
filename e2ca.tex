@@ -9,6 +9,9 @@
 \def\@evenfoot{}}
 \makeatother
 \pagestyle{headings}
+\usepackage{psfrag}
+
+% \usepackage{auto-pst-pdf}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -29,6 +32,8 @@
 
 %Ignores \vbox errors below the level of 10000
 % \vbadness=10000
+
+
 
 \begin{document}
 %opening
@@ -79,6 +84,9 @@ Wireless, MAC, Collision-free, CSMA/E2CA.
 
 \section{Introduction} \label{introduction}
   \input{intro}
+
+\section{A descentralized and fair CSMA/E2CA} \label{csmae2ca}
+  \input{solution}
   
 \bibliographystyle{Classes/IEEEtran}
 \bibliography{IEEEabrv,ref}
