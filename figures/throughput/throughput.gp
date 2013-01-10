@@ -152,5 +152,5 @@ set fontpath
 set psdir
 set fit noerrorvariables
 GNUTERM = "x11"
-plot "11M_DCF.txt" u 1:2 title "CSMA/CA" w l ls 1 lw 3, "2_0_0.txt" u 1:2 title "CSMA/E2CA" w l ls 3 lw 3
+plot "11M_DCF.txt" u 1:2 title "CSMA/CA" w l ls 1 lw 3, "2_0_0.txt" u 1:2 title "CSMA/ECA" w l ls 3 lw 3
 #    EOF
