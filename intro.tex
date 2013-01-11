@@ -14,7 +14,7 @@ Carrier Sense Multiple Access with Enhanced Collision Avoidance (CSMA/ECA) achie
 	C = \lceil{E[\mathcal{U}[0, CW - 1]]}\rceil
 \end{equation}
 
-In a scenario where $\eta \leq C$, eventually all contenders will be able to pick a different transmission slot, therefore achieving a collision-free state.
+In a scenario where $\eta \leq C$, eventually all contenders will be able to pick different transmission slots, therefore achieving a collision-free state.
 
 When the system is overcrowded, $\eta>C$, CSMA/ECA suffers a decrease in throughput as appreciated in Figure~\ref{fig:throughput}. This effect is caused by collisions originated by $\eta-C$ contenders forced to generate a random backoff counter and attempting transmission on slots previously picked by $C$ nodes using a deterministic backoff.
 
@@ -30,6 +30,6 @@ When the system is overcrowded, $\eta>C$, CSMA/ECA suffers a decrease in through
 
 %As can be appreciated in Figure~\ref{fig:throughput}, the constraint $\eta \leq C$ is also limiting the throughput in CSMA/E2CA.
 
-In Figure~\ref{fig:throughput}, when $\eta > C$ the CSMA/ECA system is overcrowded with contenders and the collision-free state is compromised. As more contenders are introduced, the system behavior tends to be more like CSMA/CA: nodes are forced to choose a random backoff.
+In Figure~\ref{fig:throughput}, the collision-free state is compromised when $\eta>C$. As more contenders are introduced, the system behavior tends to be more like CSMA/CA: nodes are forced to choose a random backoff.
 
 In this work, a fully-distributed version of CSMA/ECA is presented and the throughput issue when $\eta > C$ is assessed.

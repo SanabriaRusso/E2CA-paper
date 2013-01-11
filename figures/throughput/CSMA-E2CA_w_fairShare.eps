@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0
 %%Title: CSMA-E2CA_w_fairShare.eps
-%%Creator: gnuplot 4.6 patchlevel 0
-%%CreationDate: Wed Jan  9 17:45:48 2013
+%%Creator: gnuplot 4.6 patchlevel 1
+%%CreationDate: Fri Jan 11 10:21:31 2013
 %%DocumentFonts: (atend)
 %%BoundingBox: 176 50 554 590
 %%Orientation: Landscape
@@ -49,7 +49,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 4.4 (August 2010)
+% Gnuplot Prolog Version 4.6 (September 2012)
 %
 %/SuppressPDFMark true def
 %
@@ -316,7 +316,8 @@ gnudict begin
 /PatternFill {gsave /PFa [ 9 2 roll ] def
   PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
   PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
-  gsave 1 setgray fill grestore clip
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+  clip
   currentlinewidth 0.5 mul setlinewidth
   /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
   0 0 M PFa 5 get rotate PFs -2 div dup translate
@@ -458,11 +459,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (CSMA-E2CA_w_fairShare.eps)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 4.6 patchlevel 0)
-  /Author (lsr)
+  /Creator (gnuplot 4.6 patchlevel 1)
+  /Author (L_SR)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Wed Jan  9 17:45:48 2013)
+  /CreationDate (Fri Jan 11 10:21:31 2013)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -739,7 +740,7 @@ LTb
 LT0
 LCb setrgbcolor
 3852 3478 M
-[ [(Times) 180.0 0.0 true true 0 (CSMA/E2CA with Fair Share)]
+[ [(Times) 180.0 0.0 true true 0 (CSMA/ECA with fair share)]
 ] -60.0 MRshow
 LT0
 3936 3478 M
@@ -799,7 +800,7 @@ stroke
 LT2
 LCb setrgbcolor
 3852 3338 M
-[ [(Times) 180.0 0.0 true true 0 (CSMA/E2CA w/o Fair Share)]
+[ [(Times) 180.0 0.0 true true 0 (CSMA/ECA w/o fair share)]
 ] -60.0 MRshow
 LT2
 3936 3338 M
@@ -859,7 +860,7 @@ stroke
 LT7
 LCb setrgbcolor
 3852 3198 M
-[ [(Times) 180.0 0.0 true true 0 (JFI CSMA/E2CA w/o Fair Share)]
+[ [(Times) 180.0 0.0 true true 0 (JFI CSMA/ECA w/o fair share)]
 ] -60.0 MRshow
 LT7
 3936 3198 M
@@ -919,7 +920,7 @@ stroke
 LT8
 LCb setrgbcolor
 3852 3058 M
-[ [(Times) 180.0 0.0 true true 0 (JFI CSMA/E2CA with Fair Share)]
+[ [(Times) 180.0 0.0 true true 0 (JFI CSMA/ECA with fair share)]
 ] -60.0 MRshow
 LT8
 3936 3058 M

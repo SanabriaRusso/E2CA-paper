@@ -4,7 +4,13 @@ There are numerous reasons why CSMA/ECA is more useful when modeled as a decentr
 
 In an overcrowded CSMA/ECA ($\eta>C$), colliding nodes will double $CW$ each time and reset it ($CW=CW_{min}$) upon each transmission success, augmenting its collision probability. This behavior accounts for the throughput reduction in Figure~\ref{fig:throughput}.
 
-In order to leverage this issue, CSMA/ECA forces nodes to \emph{stick} to its backoff stage, $m$. That is, $CW$ is no longer reset after a successful transmission; resulting in a greater system capacity because of the larger $CW$. This leads to a collision-free state while $\eta\leq C_{m}$, where $C_{m}$ accounts for $C$ in Eq.~\ref{eq:capacity} computed with the larger $CW$.
+In order to leverage this issue, CSMA/ECA forces nodes to \emph{stick} to its backoff stage (or \emph{stage stickiness} from here on), $m$. That is, $CW$ is no longer reset after a successful transmission; resulting in a greater system capacity because of the larger $CW$. This leads to a collision-free state while $\eta\leq C_{m}$, where $C_{m}$ accounts for $C$ in Eq.~\ref{eq:capacity} computed with a $CW$ in a backoff stage $m$.
+
+Having a greater system capacity ($C_{m} > C$) accounts for more nodes being able to achieve a collision-free state. Nevertheless, in a $\eta\leq C_{m}$ scenario, contenders may have different deterministic backoff counters ($bo_{d}$) which provoke some nodes to access the channel more often than others. This fairness issue is averted with \emph{fair share}.
+
+This mechanism consist on allowing each contender to send $2^{m}$ packets every time its backoff expires ($bo_{d}=0$), making sure that contenders with longer backoff are compensated proportionally.
+
+Figure~\ref{fig:fairShare}, depicts how CSMA/ECA with stage stickiness and fair share achieves greater throughput than CSMA/CA, maintaining a collision-free state and being fair (Jain's Fairness Index~\cite{JFI}~(JFI) equals 1).
 
 %If $\eta > C$ and under saturation (all contenders have something to transmit, all the time), $\eta - C$ contenders are forced to choose a random backoff, given that there are no unpicked slots available for transmission. This in turn provokes collisions on the $C$ remaining nodes that picked a slot using a deterministic backoff~\cite{CSMA_ECA}. 
 
@@ -17,11 +23,11 @@ In order to leverage this issue, CSMA/ECA forces nodes to \emph{stick} to its ba
 %\subsection{Ensuring fairness}
 %Under CSMA/E2CA, nodes may have different contention windows ($W$ in Eq.~\ref{eq:backoff_stage}), this means that some arbitrary contenders have to wait more than others in order to access the channel; compromising the fairness of the protocol. To leverage this issue, nodes are set to transmit $2^{m}$ packets every time their backoff counter expires. That is, if a contender doubled its contention window, then it will also double the packets that are going to be transmitted on the next opportunity. This fairness mechanism for CSMA/E2CA is called Fair Share from here on.
 
-%\begin{figure}[htbp]
-%  \centering
-%  \includegraphics[width=0.7\linewidth, angle = -90]{figures/throughput/CSMA-E2CA_w_fairShare.eps}
-%  \caption{Throughput and Jain's Fairness Index when implementing Fair Share in CSMA/E2CA
-%  \label{fig:fairShare}}
-%\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth, angle = -90]{figures/throughput/CSMA-E2CA_w_fairShare.eps}
+  \caption{Throughput and Jain's Fairness Index when implementing Fair Share in CSMA/E2CA
+  \label{fig:fairShare}}
+\end{figure}
 
 %In Figure~\ref{fig:fairShare} it is appreciated through the estimation of the Jain's Fairness Index~\cite{JFI} that by implementing Fair Share every contender receives almost the same service time, therefore the system is considered fair.
