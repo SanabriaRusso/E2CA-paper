@@ -2,7 +2,7 @@
 
 % In order to model the protocol, it is treated a Decentralized Constraint Satisfaction (DCS) problem~\cite{DCSP, DCSP-E2CA} using the ACK as the only feedback information that identifies a successful transmission.
 
-In an overcrowded CSMA/ECA ($N>C$), colliding nodes will double $CW$ each time and reset it ($CW=CW_{min}$) upon each transmission success, augmenting the collision probability. This behavior accounts for the throughput reduction in Figure~\ref{fig:throughput} (see when $N=16$). To avoid increasing the number of collisions and achieving a collision-free state, nodes in CSMA/ECA do not reset the CW after successful transmissions. This is called \emph{resiliency} from here forward.
+In an overcrowded CSMA/ECA ($N>C$), colliding nodes will double $CW$ each time and reset it ($CW=CW_{min}$) upon each transmission success, augmenting the collision probability. This behavior accounts for the throughput reduction in Figure~\ref{fig:throughput} (see when $N=16$). To avoid increasing the number of collisions and achieving a collision-free state for this greater number of contenders, nodes in CSMA/ECA do not reset the $CW$ after successful transmissions. This is called \emph{resiliency} from here forward.
 
 Resiliency forces nodes to \emph{stick} to its backoff stage, $m$; resulting in a greater system capacity because of the larger $CW$. This leads to a collision-free state while $N\leq C_{m}$, where $C_{m}$ accounts for $C$ in Eq.~\ref{eq:capacity} computed with a $CW$ in a backoff stage $m$.
 
