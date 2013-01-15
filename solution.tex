@@ -1,23 +1,12 @@
-In an overcrowded CSMA/ECA ($N>N(k)$), nodes will double $CW(k)$ after collisions and reset it ($CW(k)=CW_{min}$) upon each transmission success, augmenting the collision probability. This accounts for the throughput reduction in Figure~\ref{fig:throughput}. To make it possible to achieve the collision-free state when $N>N(k)$, we propose that nodes in CSMA/ECA do not reset $CW(k)$ after successful transmissions. This is called \emph{resiliency} from here forward.
+In an overcrowded CSMA/ECA ($N>N_{max}$), nodes will double $CW(k)$ after collisions and reset it ($CW(k)=CW_{min}$) upon each transmission success, augmenting the collision probability. This accounts for the throughput reduction in Figure~\ref{fig:throughput}. To make it possible to achieve the collision-free state when $N>N_{max}$, we propose that nodes in CSMA/ECA do not reset $CW(k)$ after successful transmissions. This is called \emph{resiliency} from here forward.
 
-Resiliency forces nodes to \emph{stick} to its retransmission attempt, $k$; resulting in a larger $CW(k)$. This measure leads to a collision-free state while $N\leq N(k)$.
+Resiliency forces nodes to \emph{stick} to the value of the current backoff stage, $k$; resulting in a larger $CW(k)$. This measure leads to a collision-free state while $N\leq N_{max}$.
 
-Having a greater collision-free constraint ($N(k)$) means that more nodes are able to achieve a collision-free state. Nevertheless, in a $N\leq N(k)$ scenario, contenders may have different deterministic backoff counters which provoke some nodes to access the channel more often than others. This fairness issue is averted with \emph{fair-share}.
+Having a greater collision-free constraint ($N_{max}$) means that more nodes are able to achieve a collision-free state. Nevertheless, in a $N\leq N_{max}$ scenario, contenders may have different deterministic backoff counters which provoke some nodes to access the channel more often than others. This fairness issue is averted with \emph{fair-share}.
 
-Fair-share consist on allowing each contender to send $2^{k}$ packets every time its backoff expires ($B(k)=0$), making sure that contenders with longer backoff are compensated proportionally.
+Fair-share consist on allowing each contender to send $2^{k}$ packets every time its backoff expires ($B=0$), making sure that contenders with longer backoff are compensated proportionally.
 
 Figure~\ref{fig:fairShare}, depicts how CSMA/ECA with resiliency and fair-share achieves greater throughput than CSMA/CA, maintaining a collision-free state and being fair (Jain's Fairness Index~\cite{JFI}~(JFI) equals 1) for any number of contenders.
-
-%If $N > C$ and under saturation (all contenders have something to transmit, all the time), $N - C$ contenders are forced to choose a random backoff, given that there are no unpicked slots available for transmission. This in turn provokes collisions on the $C$ remaining nodes that picked a slot using a deterministic backoff~\cite{CSMA_ECA}. 
-
-%CSMA/E2CA manages this issue forcing the nodes to \emph{stick} to a deterministic backoff. That is, the contenders will choose a deterministic backoff two times after a successful transmission. If two consecutive collisions occur, then the contender will be forced to double its contention window (by incrementing the backoff stage, $m$ in Eq.~\ref{eq:backoff_stage}) and to pick a random backoff. This results in a faster convergence to a collision-free state, but at the same time reduces the fairness of the protocol given that some contenders may have to wait more than others to access the channel.
-
-%\begin{equation} \label{eq:backoff_stage}
-%	W = 2^{m}CW_{min},\ m\in[0,...,5]
-%\end{equation}
-
-%\subsection{Ensuring fairness}
-%Under CSMA/E2CA, nodes may have different contention windows ($W$ in Eq.~\ref{eq:backoff_stage}), this means that some arbitrary contenders have to wait more than others in order to access the channel; compromising the fairness of the protocol. To leverage this issue, nodes are set to transmit $2^{m}$ packets every time their backoff counter expires. That is, if a contender doubled its contention window, then it will also double the packets that are going to be transmitted on the next opportunity. This fairness mechanism for CSMA/E2CA is called Fair Share from here on.
 
 \begin{figure}[htbp]
   \centering
