@@ -126,7 +126,7 @@ set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
 set y2label "Jain's Fairness Index (JFI)" 
 set y2label  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
 set yrange [ 0.00000 : 9.00000 ] noreverse nowriteback
-set y2range [ 0.00000 : 3.00000 ] noreverse nowriteback
+set y2range [ 0.800000 : 1.30000 ] noreverse nowriteback
 set zlabel "" 
 set zlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse nowriteback
