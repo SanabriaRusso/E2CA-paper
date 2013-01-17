@@ -1,27 +1,27 @@
-In an overcrowded CSMA/ECA ($N>N_{max}$), nodes will double $CW(k)$ after collisions and reset it ($CW(k)=CW_{min}$) upon each transmission success, augmenting the collision probability. This accounts for the throughput reduction in Figure~\ref{fig:throughput}. To make it possible to achieve the collision-free state when $N>N_{max}$, we propose that nodes in CSMA/ECA do not reset $CW(k)$ after successful transmissions. This is called \emph{resiliency} from here forward.
+In an overcrowded CSMA/ECA ($N>N_{\max}$), nodes will double $CW(k)$ after collisions and reset it ($CW(k)=CW_{min}$) upon each transmission success, augmenting the collision probability. This accounts for the throughput reduction in Figure~\ref{fig:throughput}. To make it possible to achieve the collision-free state when $N>N_{\max}$, we propose that nodes in CSMA/ECA do not reset $CW(k)$ after successful transmissions. This is called \emph{hysteresis} from here forward.
 
-Resiliency forces nodes to \emph{stick} to the value of the current backoff stage, $k$; resulting in a larger $CW(k)$. This measure leads to a collision-free state while $N\leq N_{max}$.
+Hysteresis forces nodes to \emph{stick} to the value of the current backoff stage, $k$; resulting in a larger $CW(k)$. This measure leads to a collision-free state while $N\leq N_{\max}$.
 
-Having a greater collision-free constraint ($N_{max}$) means that more nodes are able to achieve a collision-free state. Nevertheless, in a $N\leq N_{max}$ scenario, contenders may have different deterministic backoff counters which provoke some nodes to access the channel more often than others. This fairness issue is averted with \emph{fair-share}.
+Having a greater collision-free constraint ($N_{\max}$) means that more nodes are able to achieve a collision-free state. Nevertheless, in a $N\leq N_{\max}$ scenario, contenders may have different deterministic backoff counters which provoke some nodes to access the channel more often than others. This fairness issue is averted with \emph{fair-share}.
 
-Fair-share consist on allowing each contender to send $2^{k}$ packets every time its backoff expires ($B=0$), making sure that contenders with longer backoff are compensated proportionally.
+Fair-share consist in allowing each contender to send $2^{k}$ packets every transmission, making sure that contenders with longer backoff are compensated proportionally.
 
-Figure~\ref{fig:fairShare}, depicts how CSMA/ECA with resiliency and fair-share achieves greater throughput than CSMA/CA, maintaining a collision-free state and being fair (Jain's Fairness Index~\cite{JFI}~(JFI) equals 1) for any number of contenders.
+Figure~\ref{fig:fairShare}, depicts how CSMA/ECA with hysteresis and fair-share achieves greater throughput than CSMA/CA, maintaining a collision-free state while being fair (Jain's Fairness Index~\cite{JFI}~(JFI) greater than CSMA/ECA), for any number of contenders.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\linewidth, angle = -90]{figures/throughput/CSMA-E2CA_w_fairShare.eps}
+  \includegraphics[width=0.7\linewidth, angle = -90]{figures/errorPlots/ECA-w-enhancements-fixed.eps}
   \caption{Throughput and Jain's Fairness Index when implementing fair-share in CSMA/ECA
   \label{fig:fairShare}}
 \end{figure}
 
-The concept fair-share, was first introduced by Fang et al. Available at SpringerLink~\cite{L_MAC2}. This work evaluates the performance of CSMA/ECA when implementing the concept in a customized C++ simulator.
+The concept of fair-share, was first introduced by Fang et al. in~\cite{L_MAC2}. This work evaluates the performance of CSMA/ECA when implementing the concept in a customized C++ simulator.
 
 %In Figure~\ref{fig:fairShare} it is appreciated through the estimation of the Jain's Fairness Index~\cite{JFI} that by implementing Fair Share every contender receives almost the same service time, therefore the system is considered fair.
 
-\subsection*{Evaluation}
-CSMA/ECA preserves backward compatibility with CSMA/CA (details in~\cite{CSMA_ECA, HE}), which is paramount for the coexistence and progressive adoption of the protocol. Many other performance evaluations, like a semi-analytical framework modelling the enhanced collision avoidance mechanism and comparing it with other access schemes (like Basic Access and RTS/CTS), are provided in~\cite{E2CA_performance}. Nevertheless, to the best of our knowledge this is the first evaluation of resilience and fair-share in CSMA/ECA.
+\section{Evaluation}
+CSMA/ECA preserves backward compatibility with CSMA/CA (details in~\cite{CSMA_ECA}~and~\cite{HE}), which is paramount for the coexistence and progressive adoption of the protocol. Other performance evaluations, like a semi-analytical framework modelling the enhanced collision avoidance mechanism and comparing it with other access schemes (like Basic Access and RTS/CTS), are provided in~\cite{E2CA_performance}. Nevertheless, to the best of our knowledge this is the first evaluation of resilience and fair-share in CSMA/ECA.
 
-Implementation is performed on a customized version of the COST~\cite{COST}~simulator. The system was set to be under saturation (nodes always have packets to transmit) during a period of a hundred thousand seconds at a maximum throughput of $11$Mbps. The number of contenders ranges from $2$ to $50$. Further MAC-related parameters can be found under~\emph{stats/stats.h}~in~\cite{sim:parameters}; as well as the code for the whole CSMA/ECA implementation.
+Implementation is performed on a customized version of the COST~\cite{COST}~simulator. The system was set to be under saturation (nodes always have packets to transmit) during a period of ten seconds at a maximum throughput of $11$Mbps. The number of contenders ranges from $2$ to $50$ and a hundred simulations are performed for each number of contenders. Further MAC-related parameters can be found under~\emph{stats/stats.h}~in~\cite{sim:parameters}; as well as the code for the whole CSMA/ECA implementation.
 
-Figure~\ref{fig:throughput} and Figure~\ref{fig:fairShare} are results derived from the evaluation platform.
+Figure~\ref{fig:throughput} and Figure~\ref{fig:fairShare} are results derived from the evaluation platform with $95\%$ confidence intervals.

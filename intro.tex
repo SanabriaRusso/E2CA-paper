@@ -1,33 +1,29 @@
-IEEE $802.11$ networks use a shared and limited medium to establish communication among nodes. Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) is the protocol in charge of coordinating access to the wireless medium in order to avoid simultaneous transmissions by different nodes. If two or more nodes ($N$) attempt transmission at the same time, a \emph{collision} accurs and the resulting transmission is disregarded by receivers.
+IEEE $802.11$ networks use a shared and limited medium to establish communication among nodes. Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) is the protocol in charge of coordinating access to the wireless medium in order to avoid simultaneous transmissions by different nodes. If two or more nodes ($N$) attempt transmission at the same time, a \emph{collision} occurs and the resulting transmission is discarded by the receivers.
 
-Time in WLANs is slotted, and each slot can be classified as empty, successful and collision, accounting for no transmission, successful transmission or collision, respectively.
 
-Each contender attempting to transmit a packet chooses a random backoff counter $B\sim\mathcal{U}[0,CW(k)-1]$, where $B$ is a random variable drawn from the uniform distribution $\mathcal{U}$, the \emph{backoff stage} $k=[0,\ldots,m]$ accounts for transmission attempts and $CW(k)=[2^{k}CW_{min},~2^{m}CW_{min}]$ is the contention window, with $CW_{min}$ its minimum value. Each passing empty slot decrements $B$ by one; when the backoff counter reaches zero the contender will attempt transmission. The success of the transmission attempt is only confirmed by the reception of an acknowledgement (ACK) frame from the receiver, otherwise a collision is assumed. If that were the case, each contender involved in the collision doubles its contention window by incrementing its backoff stage and the packet is retransmitted. If the transmission is successful, the sender resets its contention window to the minimum value ($k=0\therefore CW(k)=CW_{min}$).
 
-%Each contender attempting to transmit a packet chooses a uniformly random backoff counter $B(k)\in[0,CW(k)-1]$, where $k$ is the current transmission attempt and $CW(k)\in[2^{k}CW_{min},~2^{m}CW_{min}]$ is the contention window, with $CW_{min}$ its minimum value and $m$ the maximum \emph{backoff stage}. Each passing empty slot decrements $B(k)$ by one; when the backoff counter reaches zero the contender will attempt transmission. The success of the transmission attempt is only confirmed by the reception of an acknowledgement (ACK) frame from the receiver, otherwise a collision is assumed. If that were the case, each contender involved in the collision doubles its contention window and the packet is retransmitted. If the transmission is successful, the sender resets its contention window to the minimum value ($CW(k)=CW_{min}$).
+Time in WLANs is slotted, and each slot can be classified as empty, successful or collision (accounting for no transmission, successful transmission or collision, respectively).
 
-Carrier Sense Multiple Access with Enhanced Collision Avoidance (CSMA/ECA) achieves less collisions and outperforms CSMA/CA in most typical scenarios~\cite{CSMA_ECA}. The only difference with CSMA/CA is that a deterministic backoff~$B=N_{max}$ is chosen after each successful transmission. $N_{max}$ is defined in~(\ref{eq:capacity})~\cite{CSMA_ECA} as the \emph{collision-free constraint} and represents the maximum number of nodes participating in the contend for transmission able to achieve a collision-free state. In~(\ref{eq:capacity}),~$E[\cdotp]$ is the expectation operator, $\mathcal{U}$ is the uniform distribution and $CW(k)$ is the contention window at transmission attempt $k$.
+Each contender attempting to transmit a packet chooses a uniformly random backoff counter value $B = [0,CW(k)-1]$, where $k=[0,\ldots,m]$ is the \emph{backoff stage} and $CW(k)=[2^{k}CW_{\min},~2^{m}CW_{\min}]$ is the contention window, with $CW_{\min}$ its minimum value. Each passing empty slot decrements $B$ by one; when the backoff counter reaches zero, the contender will attempt transmission. The success of the transmission attempt is only confirmed by the reception of an acknowledgement (ACK) frame from the receiver, otherwise a collision is assumed. If that is the case, each contender involved in the collision doubles its contention window by incrementing its backoff stage and the packet is retransmitted. If the transmission is successful, the sender resets its contention window to the minimum value ($k=0\therefore CW(k)=CW_{\min}$).
+
+Carrier Sense Multiple Access with Enhanced Collision Avoidance (CSMA/ECA) achieves less collisions and outperforms CSMA/CA in most typical scenarios~\cite{CSMA_ECA}. The only difference with CSMA/CA is that a deterministic backoff~$B=N_{\max}$ is chosen after each successful transmission. $N_{\max}$ is defined in~(\ref{eq:capacity}) as the \emph{collision-free constraint} and represents the maximum number of nodes participating in the contend for transmission able to achieve a collision-free state.
 
 \begin{equation} \label{eq:capacity}	
-	N_{max} = \lceil{E[\mathcal{U}[0, CW(k) - 1]]}\rceil = CW(k)/2
+	N_{\max} = CW_{\min}/2
 \end{equation}
 
 In a scenario where $N \leq N_{max}$, eventually all contenders will be able to pick different transmission slots, therefore achieving a collision-free state.
 
-When the system is overcrowded, $N>N_{max}$, CSMA/ECA suffers a decrease in throughput as appreciated in Figure~\ref{fig:throughput}. This effect is caused by collisions originated by $N-N_{max}$ contenders forced to generate a random backoff counter and attempting transmission on slots previously picked by $N_{max}$ nodes using a deterministic backoff.
+When the system is overcrowded, $N>N_{\max}$, CSMA/ECA suffers a decrease in throughput as seen in Figure~\ref{fig:throughput}. This effect is caused by collisions originated by $N-N_{\max}$ contenders forced to generate a random backoff counter and attempting transmission on slots previously picked by $N_{\max}$ nodes using a deterministic backoff.
 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\linewidth, angle = -90]{figures/throughput/throughput.eps}
-  \caption{The throughput is CSMA/ECA decreases when the number of contenderes~$N$~exceeds~$N_{max}$, which is the maximum number of contenders that can be allocated in a collision-free fashion.
+  \includegraphics[width=0.7\linewidth, angle = -90]{figures/errorPlots/ECA-vs-CA-fixed.eps}
+  \caption{The throughput is CSMA/ECA decreases when the number of contenderes~$N$~exceeds~$N_{\max}$, which is the maximum number of contenders that can be allocated in a collision-free fashion.
   \label{fig:throughput}}
 \end{figure}
 
-As $N-N_{max}$ nodes are unable to successfully transmit, collisions in turn force the $N_{max}$ nodes that chose a deterministic backoff, to switch to a random one. The outcome is a mixed system composed of contenders using either deterministic or random backoff counters. The throughput degradation depicted in Figure~\ref{fig:throughput} when $N=16$, is a consequence of the great number of collisions resulting from this behavior.
-
-%system where all nodes choose a random backoff (CSMA/CA), which do not take advantage of the higher throughput CSMA/ECA offers.
+As $N-N_{\max}$ nodes are unable to successfully transmit, collisions force the $N_{\max}$ nodes that chose a deterministic backoff, to switch to a random one. The outcome is a mixed system composed of contenders using either deterministic or random backoff counters. The throughput degradation depicted in Figure~\ref{fig:throughput} when $N=16$, is a consequence of the great number of collisions resulting from this behavior.
 
 In this work, the CSMA/ECA protocol is extended to attain high throughput and fairness regardless of the number of contenders.
-
-%In this work, a fully-distributed version of CSMA/ECA is presented and the throughput issue when $N>C$ is assessed.

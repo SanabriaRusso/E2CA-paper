@@ -152,5 +152,5 @@ set fontpath
 set psdir
 set fit noerrorvariables
 GNUTERM = "aqua"
-plot "multiAverage-1-0-0.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA" w yerrorbars ls 1 lw 2, "multiAverage-1-1-1.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA with Histeresis and Fair-Share" w yerrorbars ls 3 lw 2, "1-1-1.txt" u 1:4 title "JFI for CSMA/ECA w/ Histeresis and Fair-Share" w l ls 9 lw 2 axis x1y2
+plot "multiAverage-1-0-0.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA" w yerrorbars ls 1 lw 2, "multiAverage-1-1-1.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA w/ hysteresis and fair-share" w yerrorbars ls 3 lw 2, "multiAverage-1-0-0.txt" u 1:4 title "JFI for CSMA/ECA" w l ls 8 lw 2 axis x1y2, "multiAverage-1-1-1.txt" u 1:4 title "JFI for CSMA/ECA w/ hysteresis and fair-share" w l ls 9 lw 2 axis x1y2
 #    EOF
