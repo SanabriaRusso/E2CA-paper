@@ -16,7 +16,7 @@ To make it possible to achieve a collision-free state when the system is overcro
 
 %This measure leads to a collision-free state while $N\leq B_{\mbox{\scriptsize{d}}}$.
 
-Hysteresis produces deterministic backoffs that are larger than $CW_{\min}/2$, thus making it possible to allocate a larger number of contenders in a collision-free fashion. Contenders may be in different deterministic backoff stages, which provokes some nodes to access the channel more often than others. This fairness issue, that can be observed in Figure~\ref{fig:fairShare}, is averted with \emph{fair-share}. The concept of fair-share, was first introduced by Fang et al. in~\cite{L_MAC2}.
+Hysteresis produces deterministic backoffs that are larger than $CW_{\min}/2$, thus making it possible to allocate more contenders in a collision-free fashion. Contenders may be in different deterministic backoff stages, which provokes some nodes to access the channel more often than others. This fairness issue, that can be observed in Figure~\ref{fig:fairShare}, is averted with \emph{fair-share}. The concept of fair-share, was first introduced by Fang et al. in~\cite{L_MAC2}.
 %Having a greater collision-free constraint means that more nodes are able to achieve a collision-free state. 
 
 
@@ -27,7 +27,7 @@ Figure~\ref{fig:fairShare}, depicts how CSMA/ECA with hysteresis and fair-share 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.7\linewidth, angle = -90]{figures/errorPlots/ECA-w-enhancements-NEW.eps}
-  \caption{Throughput and Jain's Fairness Index when implementing fair-share in CSMA/ECA
+  \caption{Throughput and Jain's Fairness Index when implementing hysteresis and fair-share in CSMA/ECA
   \label{fig:fairShare}}
 \end{figure}
 
