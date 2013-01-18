@@ -11,8 +11,13 @@
 #    	gnuplot home:     http://www.gnuplot.info
 #    	faq, bugs, etc:   type "help FAQ"
 #    	immediate help:   type "help"  (plot window: hit 'h')
-# set terminal x11 
-# set output
+# set terminal postscript eps enhanced defaultplex \
+   leveldefault color colortext \
+   dashed dashlength 1.0 linewidth 1.0 butt noclip \
+   nobackground \
+   palfuncparam 2000,0.003 \
+   "NimbusSanL-Regu" 17 fontfile "/usr/share/texmf-texlive/fonts/type1/urw/helvetic/uhvr8a.pfb"  fontscale 1.0 
+# set output 'ECA-w-enhancements-FINAL.eps'
 unset clip points
 set clip one
 unset clip two
@@ -77,7 +82,7 @@ set cntrparam order 4
 set cntrparam linear
 set cntrparam levels auto 5
 set cntrparam points 5
-set size ratio 0 0.75,0.75
+set size ratio 0 0.9,0.9
 set origin 0,0
 set style data points
 set style function lines
