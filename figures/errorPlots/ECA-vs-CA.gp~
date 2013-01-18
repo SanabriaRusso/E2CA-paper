@@ -52,7 +52,7 @@ set key maxcolumns 0 maxrows 0
 set key noopaque
 unset label
 unset arrow
-set arrow 1 from 16, 2.9, 0 to 16, 6.3, 0 nohead back nofilled linetype 0 linewidth 3.000
+set arrow 1 from 16, 2.9, 0 to 16, 6.4, 0 nohead back nofilled linetype 0 linewidth 3.000
 set style increment default
 unset style line
 unset style arrow

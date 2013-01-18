@@ -1,9 +1,9 @@
-#!/opt/local/bin/gnuplot -persist
+#!/usr/local/bin/gnuplot -persist
 #
 #    
 #    	G N U P L O T
-#    	Version 4.6 patchlevel 1    last modified 2012-09-26 
-#    	Build System: Darwin x86_64
+#    	Version 4.6 patchlevel 0    last modified 2012-03-04 
+#    	Build System: Linux x86_64
 #    
 #    	Copyright (C) 1986-1993, 1998, 2004, 2007-2012
 #    	Thomas Williams, Colin Kelley and many others
@@ -11,7 +11,7 @@
 #    	gnuplot home:     http://www.gnuplot.info
 #    	faq, bugs, etc:   type "help FAQ"
 #    	immediate help:   type "help"  (plot window: hit 'h')
-# set terminal aqua 0 title "Figure 0" size 846,594 font "Times-Roman,14" noenhanced solid
+# set terminal x11 
 # set output
 unset clip points
 set clip one
@@ -125,8 +125,8 @@ set ylabel "Throughput (Mbps)"
 set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
 set y2label "Jain's Fairness Index (JFI)" 
 set y2label  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
-set yrange [ 0.00000 : 9.00000 ] noreverse nowriteback
-set y2range [ 0.800000 : 1.30000 ] noreverse nowriteback
+set yrange [ 1.00000 : 7.60000 ] noreverse nowriteback
+set y2range [ 0.600000 : 1.30000 ] noreverse nowriteback
 set zlabel "" 
 set zlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse nowriteback
@@ -152,5 +152,5 @@ set fontpath
 set psdir
 set fit noerrorvariables
 GNUTERM = "aqua"
-plot "multiAverage-1-0-0.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA" w yerrorbars ls 1 lw 2, "multiAverage-1-1-1.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA w/ hysteresis and fair-share" w yerrorbars ls 3 lw 2, "multiAverage-1-0-0.txt" u 1:4 title "JFI for CSMA/ECA" w l ls 8 lw 2 axis x1y2, "multiAverage-1-1-1.txt" u 1:4 title "JFI for CSMA/ECA w/ hysteresis and fair-share" w l ls 9 lw 2 axis x1y2
+plot "multiAverage-1-1-1.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA w/ hysteresis and fair-share" w yerrorbars ls 1 lw 2, "" u 1:4 title "JFI for CSMA/ECA w/ hysteresis and fair-share" w l ls 9 lw 2 axis x1y2, "multiAverage-1-1-0.txt" u 1:($2/1e6):(1.96*($3/1e6)/3.16) title "CSMA/ECA w/ hysteresis only" w yerrorbars ls 3 lw 2, "" u 1:4 title "JFI for CSMA/ECA w/ hysteresis only" w l ls 8 lw 2 axis x1y2
 #    EOF
