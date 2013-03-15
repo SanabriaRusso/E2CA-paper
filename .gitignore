@@ -30,3 +30,8 @@
 *.vrb
 *.xdy
 *.tdo
+*~
+TSWLatexianTemp*
+doc/
+*.backup
+*eps-converted-to.pdf
